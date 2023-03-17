@@ -20,7 +20,7 @@ int main(void)
 	{
 		j = '0';
 
-		while (j <= '8')
+		while (j <= '9')
 		{
 			k = i;
 			l = j + 1;
