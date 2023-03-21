@@ -11,7 +11,7 @@ int main(void)
 	long b = 2;
 	long temp;
 
-	while(counter < 98)
+	while (counter < 98)
 	{
 		counter++;
 		if (counter == 98)

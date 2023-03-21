@@ -13,7 +13,7 @@ int main(void)
 	int sum = 0;
 	int limit = 4000000;
 
-	while(a <= limit)
+	while (a <= limit)
 	{
 		if (a % 2 == 0)
 		{

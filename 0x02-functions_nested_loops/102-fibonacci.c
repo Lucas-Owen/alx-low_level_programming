@@ -12,7 +12,7 @@ int main(void)
 	long b = 2;
 	long temp;
 
-	while(counter < 50)
+	while (counter < 50)
 	{
 		counter++;
 		if (counter == 50)
