@@ -3,6 +3,8 @@
 /**
  * times_table - prints n times table starting with 0
  *
+ * @n: dimension of the table
+ *
  * Return: void
  */
 void print_times_table(int n)
