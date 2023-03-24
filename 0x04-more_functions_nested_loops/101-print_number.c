@@ -27,5 +27,4 @@ void print_number(int n)
 		n %= factor;
 		factor /= 10;
 	}
-	_putchar('\n');
 }
