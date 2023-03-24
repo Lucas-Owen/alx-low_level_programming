@@ -14,6 +14,11 @@ void print_number(int n)
 		_putchar('-');
 		n = -n;
 	}
+	if (n < 10)
+	{
+		_putchar(n + '0');
+		return;
+	}
 	while (factor < n)
 	{
 		factor *= 10;
