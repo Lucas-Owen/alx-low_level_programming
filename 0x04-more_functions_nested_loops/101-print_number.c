@@ -7,7 +7,7 @@
  */
 void print_number(int n)
 {
-	int factor = 1, temp;
+	int factor = 1;
 
 	if (n < 0)
 	{
@@ -20,7 +20,7 @@ void print_number(int n)
 	}
 
 	factor /= 10;
-	
+
 	while (factor > 0)
 	{
 		_putchar(n / factor + '0');
