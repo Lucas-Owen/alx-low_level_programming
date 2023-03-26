@@ -33,17 +33,21 @@ int main(void)
 	long num = 612852475143;
 	long i, largest;
 
-	for(i = 2; i <= num / 2; i++)
+	for (i = 3; i <= num; i += 2)
 	{
 		if (is_prime(i))
 		{
-			if(num % i == 0)
+			if (num % i == 0)
 				largest = i;
 			while (num % i == 0)
 			{
-				printf("%ld - ", num);
 				num /= i;
 			}
+		}
+		if (is_prime(num))
+		{
+			largest = num;
+			break;
 		}
 	}
 	printf("%ld\n", largest);
