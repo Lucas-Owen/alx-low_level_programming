@@ -7,7 +7,8 @@
  */
 void print_number(int n)
 {
-	int factor = 1;
+	int factor = 0;
+	int temp, i;
 
 	if (n < 0)
 	{
@@ -15,16 +16,21 @@ void print_number(int n)
 		n = -n;
 	}
 
+	temp = n;
 	do {
-		factor *= 10;
-	} while (factor < n);
+		factor++;
+		temp /= 10;
+	} while (temp > 0);
 
-	factor /= 10;
 
-	while (factor > 0)
+	for (; factor > 0; factor--)
 	{
-		_putchar(n / factor + '0');
-		n %= factor;
-		factor /= 10;
+		temp = 1;
+		for (i = factor; i > 1; i--)
+		{
+			temp *= 10;
+		}
+		_putchar(n / temp + '0');
+		n %= temp;
 	}
 }
