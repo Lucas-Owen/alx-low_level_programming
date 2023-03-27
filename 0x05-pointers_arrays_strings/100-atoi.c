@@ -24,10 +24,10 @@ int _atoi(char *s)
 			sign *= -1;
 		j--;
 	}
-	number = *(s + i) - '0';
+	number = sign * (*(s + i) - '0');
 	i++;
 	while (*(s + i) >= '0' && *(s + i) <= '9' && *(s + i))
-		number = number * 10 + (*(s + i++) - '0');
+		number = number * 10 + sign * ((*(s + i++) - '0'));
 
-	return (sign * number);
+	return (number);
 }
