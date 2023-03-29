@@ -20,7 +20,7 @@ void print_buffer(char *b, int size)
 		putchar('\n');
 		return;
 	}
-	for (j = 0, lines = 0; j < size; lines++)
+	for (j = 0; j < size;)
 	{
 		printf("%08x: ", j);
 		printed = 0;
@@ -37,7 +37,7 @@ void print_buffer(char *b, int size)
 			if (i % 2)
 				printf(" ");
 		}
-		for (; printed >= 0; printed--, b++)
+		for (; printed > 0; printed--, b++)
 		{
 			if (isprint(*b))
 				printf("%c", *b);
