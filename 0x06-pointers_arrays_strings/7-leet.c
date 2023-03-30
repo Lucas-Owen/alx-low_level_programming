@@ -9,19 +9,17 @@
 char *leet(char *str)
 {
 	char *temp = str;
+	char leet[] = "aAeEoOtTlL";
+	char l1337[] = "4433007711";
+	int i;
 
 	while (*temp)
 	{
-		if (*temp == 'a' || *temp == 'A')
-			*temp = '4';
-		else if (*temp == 'e' || *temp == 'E')
-			*temp = '3';
-		else if (*temp == 'o' || *temp == 'O')
-			*temp = '0';
-		else if (*temp == 't' || *temp == 'T')
-			*temp = '7';
-		else if (*temp == 'l' || *temp == 'L')
-			*temp = '1';
+		for (i = 0; leet[i]; i++)
+		{
+			if (*temp == leet[i])
+				*temp = l1337[i];
+		}
 		temp++;
 	}
 	return (str);
