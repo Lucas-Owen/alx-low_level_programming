@@ -11,7 +11,7 @@ void reverse_array(int *a, int n)
 	int half = n / 2, temp;
 	int *last = a + n - 1;
 
-	for (; half >= 0; half--, a++, last--)
+	for (; half > 0; half--, a++, last--)
 	{
 		temp = *a;
 		*a = *last;
