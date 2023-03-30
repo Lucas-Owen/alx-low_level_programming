@@ -9,11 +9,8 @@ char *cap_string(char *str)
 {
 	char *temp = str;
 
-	if (temp == NULL)
-		return (str);
 	if (*temp >= 'a' && *temp <= 'z')
 		*temp -= 32;
-
 	while (*temp)
 	{
 		switch (*temp)
@@ -28,15 +25,17 @@ char *cap_string(char *str)
 				;
 			case '\"':
 				;
-			case '(':
+			case '?':
 				;
-			case ' ':
+			case '(':
 				;
 			case ')':
 				;
 			case '{':
 				;
 			case '}':
+				;
+			case ' ':
 				;
 			case '\n':
 				;
