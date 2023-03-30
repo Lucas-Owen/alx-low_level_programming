@@ -9,6 +9,9 @@ char *cap_string(char *str)
 {
 	char *temp = str;
 
+	if (*temp >= 'a' && *temp <= 'z')
+		*temp -= 32;
+
 	while (*temp)
 	{
 		switch (*temp)
