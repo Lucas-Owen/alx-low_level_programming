@@ -10,14 +10,13 @@
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int i, sum, s1 = 0, s2 = 0, sr = size_r - 1, carry, max;
+	int i, sum, s1 = 0, s2 = 0, sr = size_r - 1, carry;
 
 	while (*(n1 + s1))
 		s1++;
 
 	while (*(n2 + s2))
 		s2++;
-	max = s1 > s2 ? s1 : s2;
 
 	carry = 0;
 	while (s1 >= 0 || s2 >= 0)
