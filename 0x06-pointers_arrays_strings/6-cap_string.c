@@ -15,37 +15,27 @@ char *cap_string(char *str)
 	{
 		switch (*temp)
 		{
-			case ',':
-				;
-			case ';':
-				;
-			case '.':
-				;
-			case '!':
-				;
-			case '\"':
-				;
-			case '?':
-				;
-			case '(':
-				;
-			case ')':
-				;
-			case '{':
-				;
-			case '}':
-				;
-			case ' ':
-				;
-			case '\n':
-				;
-			case '\t':
-				if (*(temp + 1))
-					if (*(temp + 1) >= 'a' && *(temp + 1) <= 'z')
-						*(temp + 1) -= 32;
-				break;
-			default:
-				break;
+		case ',':
+		case ';':
+		case '.':
+		case '!':
+		case '\"':
+		case '?':
+		case '(':
+		case ')':
+		case '{':
+		case '}':
+		case ' ':
+		case '\n':
+		case '\t':
+			if (*(temp + 1))
+			{
+				if (*(temp + 1) >= 'a' && *(temp + 1) <= 'z')
+					*(temp + 1) -= 32;
+			}
+			break;
+		default:
+			break;
 		}
 		temp++;
 	}
