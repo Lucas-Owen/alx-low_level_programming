@@ -13,7 +13,7 @@
  */
 void print_buffer(char *b, int size)
 {
-	int i, j, printed, lines;
+	int i, j, printed;
 
 	if (size <= 0)
 	{
