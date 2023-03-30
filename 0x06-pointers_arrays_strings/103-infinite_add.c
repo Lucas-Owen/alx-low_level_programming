@@ -10,7 +10,7 @@
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int i, sum, s1 = 0, s2 = 0, sr = size_r - 1, carry;
+	int sum, s1 = 0, s2 = 0, sr = size_r - 1, carry;
 
 	while (*(n1 + s1))
 		s1++;
@@ -18,12 +18,10 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	while (*(n2 + s2))
 		s2++;
 
+	r[sr] = '\0';
 	carry = 0;
-	while (s1 >= 0 || s2 >= 0)
+	for (--sr, --s1, --s2; carry > 0 || s1 >= 0 || s2 >= 0; s1--, s2--, sr--)
 	{
-		sr--;
-		s1--;
-		s2--;
 		if (sr < 0)
 			return (0);
 		sum = 0;
@@ -36,9 +34,5 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		r[sr] = sum % 10 + '0';
 	}
 
-	for (i = 0; i + sr < size_r; i++)
-		r[i] = r[i + sr];
-	r[size_r - sr - 1] = '\0';
-
-	return (r);
+	return (r + sr + 1);
 }
