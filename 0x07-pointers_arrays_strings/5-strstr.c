@@ -1,5 +1,5 @@
 #include "main.h"
-#include <stddef.h>
+#define NULL 0
 /**
  * _strstr - Finds the first occurrence of needle in haystack
  * @haystack: Subject string
