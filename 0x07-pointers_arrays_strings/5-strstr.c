@@ -10,6 +10,9 @@ char *_strstr(char *haystack, char *needle)
 {
 	char *temp1, *temp2;
 
+	if (haystack == NULL || needle == NULL)
+		return (NULL);
+
 	while (*haystack)
 	{
 		if (*haystack == *needle)
