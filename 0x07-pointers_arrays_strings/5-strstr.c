@@ -17,11 +17,15 @@ char *_strstr(char *haystack, char *needle)
 	{
 		if (*haystack == *needle)
 		{
-			for (temp1 = haystack, temp2 = needle; *temp1 && *temp2; temp1++, temp2++)
+			for (temp1 = haystack, temp2 = needle; *temp2; temp1++, temp2++)
+			{
+				if (!*temp1)
+					return (NULL);
 				if (*temp1 != *temp2)
 				{
 					break;
 				}
+			}
 			if (!*temp2)
 				return (haystack);
 		}
