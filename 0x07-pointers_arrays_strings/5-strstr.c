@@ -1,5 +1,6 @@
 #include "main.h"
-#define NULL 0
+#include <stddef.h>
+
 /**
  * _strstr - Finds the first occurrence of needle in haystack
  * @haystack: Subject string
@@ -8,7 +9,7 @@
  */
 char *_strstr(char *haystack, char *needle)
 {
-	char *temp1, *temp2;
+	int i;
 
 	if (haystack == NULL || needle == NULL)
 		return (NULL);
@@ -17,16 +18,14 @@ char *_strstr(char *haystack, char *needle)
 	{
 		if (*haystack == *needle)
 		{
-			for (temp1 = haystack, temp2 = needle; *temp2; temp1++, temp2++)
+			for (i = 0; *(needle + i); i++)
 			{
-				if (!*temp1)
+				if (*(haystack + i) == '\0')
 					return (NULL);
-				if (*temp1 != *temp2)
-				{
+				if (*(needle + i) != *(haystack + i))
 					break;
-				}
 			}
-			if (!*temp2)
+			if (*(needle + i) == '\0')
 				return (haystack);
 		}
 		haystack++;
