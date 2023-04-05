@@ -15,15 +15,25 @@ int is_palindrome_helper(char *s, char *end)
 }
 
 /**
+ * get_end - Returns a pointer to the end of a string
+ * @s: The string
+ * Return: A pointer to the terminating character of s
+ */
+char *get_end(char *s)
+{
+	if (*s)
+		return get_end(s + 1);
+	return s;
+}
+
+/**
  * is_palindrome - Checks if a string is a palindrome
  * @s: The string
  * Return: 1 if true, 0 otherwise
  */
 int is_palindrome(char *s)
 {
-	char *end = s;
+	char *end = get_end(s);
 
-	while (*end)
-		end++;
 	return (is_palindrome_helper(s, end - 1));
 }
