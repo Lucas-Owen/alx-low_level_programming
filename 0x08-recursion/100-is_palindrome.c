@@ -22,8 +22,8 @@ int is_palindrome_helper(char *s, char *end)
 char *get_end(char *s)
 {
 	if (*s)
-		return get_end(s + 1);
-	return s;
+		return (get_end(s + 1));
+	return (s);
 }
 
 /**
