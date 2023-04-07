@@ -13,13 +13,13 @@ int main(int argc, char *argv[])
 	int result = 0;
 	char *endptr;
 
-	while (argc > 0)
+	while (argc > 1)
 	{
 		endptr = NULL;
 		argc--;
 		result += strtol(argv[argc], &endptr, 10);
 
-		if (endptr)
+		if (*endptr)
 		{
 			puts("Error");
 			return (1);
