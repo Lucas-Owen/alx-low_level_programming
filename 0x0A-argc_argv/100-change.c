@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	cents = atoi(argv[1]);
 	if (cents < 0)
 	{
-		puts("Error");
+		puts("0");
 		return (1);
 	}
 
