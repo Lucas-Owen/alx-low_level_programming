@@ -1,10 +1,10 @@
 # Static Libraries
 ## Commands
-ar  
-ranlib  
-nm  
+`ar`  
+`ranlib`  
+`nm`  
 ## Files
-# libmy.a
+### libmy.a
 A static library containing all the functions listed below  
 ```
 int _putchar(char c);
@@ -28,5 +28,5 @@ unsigned int _strspn(char *s, char *accept);
 char *_strpbrk(char *s, char *accept);
 char *_strstr(char *haystack, char *needle);
 ```
-# create_static_lib.sh
+### create_static_lib.sh
 A bash script that creates a static library called `liball.a` from all the `.c` files in the current directory.
