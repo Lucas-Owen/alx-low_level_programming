@@ -9,8 +9,7 @@
 char **strtow(char *str)
 {
 	char **result, *temp = str;
-	int i;
-	unsigned int size, words;
+	unsigned int size, words, i;
 
 	if (str == NULL || strlen(str) == 0)
 		return (NULL);
@@ -22,29 +21,28 @@ char **strtow(char *str)
             temp++;
         if (*temp)
             words++;
-        while (*temp != NULL && *temp != ' ')
+        while (*temp != 0 && *temp != ' ')
             temp++;
 	}
 
-	result = malloc(words * sizeof(char*));
+	result = malloc(words * sizeof(char*) + 1);
 	if (result == NULL)
 		return (NULL);
 
-    temp = str;
+    	temp = str;
 	for (i = 0; i < words; i++)
-    {
-        while (*temp)
-        {
+    	{
             while (*temp == ' ')
                 temp++;
             size = 0;
-            while (*temp != NULL && *temp != ' ')
+            while (*temp != 0 && *temp != ' ')
             {
                 size++;
+		temp++;
             }
             if (size > 0)
             {
-                result[i] = malloc(size * sizeof(char));
+                result[i] = malloc(size * sizeof(char) + 1);
                 if (result[i] == NULL)
                 {
                     while (i > 0)
@@ -57,6 +55,6 @@ char **strtow(char *str)
                 strncpy(result[i], temp - size, size);
             }
         }
-    }
+	result[i] = NULL;
 	return (result);
 }
