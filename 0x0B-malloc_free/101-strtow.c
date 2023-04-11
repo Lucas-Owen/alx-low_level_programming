@@ -1,5 +1,25 @@
 #include <stdlib.h>
 #include <string.h>
+/**
+ * number_of_words - Counts the number of words in str
+ * @str: The string
+ * Return: Number of words separated by spaces
+ */
+ int number_of_words(char *str)
+ {
+	int words = 0;
+
+	while (*str)
+	{
+		while (*str == ' ')
+			str++;
+		if (*str)
+			words++;
+		while (*str != 0 && *str != ' ')
+			str++;
+	}
+	return words;
+ }
 
 /**
  * strtow - Converts a string to words - delimiter is space
@@ -13,48 +33,36 @@ char **strtow(char *str)
 
 	if (str == NULL || strlen(str) == 0)
 		return (NULL);
-
-	words = 0;
-	while (*temp)
-	{
-		while (*temp == ' ')
-            temp++;
-        if (*temp)
-            words++;
-        while (*temp != 0 && *temp != ' ')
-            temp++;
-	}
-
+	words = number_of_words(str);
 	result = malloc(words * sizeof(char*) + 1);
 	if (result == NULL)
 		return (NULL);
 
-    	temp = str;
 	for (i = 0; i < words; i++)
-    	{
-            while (*temp == ' ')
-                temp++;
-            size = 0;
-            while (*temp != 0 && *temp != ' ')
-            {
-                size++;
-		temp++;
-            }
-            if (size > 0)
-            {
-                result[i] = malloc(size * sizeof(char) + 1);
-                if (result[i] == NULL)
-                {
-                    while (i > 0)
-                    {
-                        i--;
-                        free(result[i]);
-                    }
-                    free(result);
-                }
-                strncpy(result[i], temp - size, size);
-            }
-        }
+	{
+		while (*temp == ' ')
+			temp++;
+		size = 0;
+		while (*temp != 0 && *temp != ' ')
+		{
+			size++;
+			temp++;
+		}
+		if (size > 0)
+		{
+			result[i] = malloc(size * sizeof(char) + 1);
+			if (result[i] == NULL)
+			{
+				while (i > 0)
+				{
+					i--;
+					free(result[i]);
+				}
+				free(result);
+			}
+			strncpy(result[i], temp - size, size);
+		}
+	}
 	result[i] = NULL;
 	return (result);
 }
