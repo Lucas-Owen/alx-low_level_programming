@@ -37,6 +37,7 @@ char *argstostr(int ac, char **av)
 	for (i = ac - 1; i >= 0; i--)
 	{
 		total--;
+		sizes[i]--;
 		result[total] = '\n';
 		while (sizes[i] > 0)
 		{
