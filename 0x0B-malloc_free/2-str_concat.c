@@ -9,7 +9,7 @@
 char *str_concat(char *s1, char *s2)
 {
 	char *result;
-	unsigned size1 = 0, size2 = 0;
+	unsigned int size1 = 0, size2 = 0;
 
 	if (s1 != NULL)
 		while (*(s1 + size1))
@@ -26,7 +26,7 @@ char *str_concat(char *s1, char *s2)
 	while (size2 > 0)
 	{
 		size2--;
-		result[size1 + size2] = s2[size1 + size2];
+		result[size1 + size2] = s2[size2];
 	}
 	while (size1 > 0)
 	{
