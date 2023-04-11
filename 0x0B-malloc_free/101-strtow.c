@@ -29,7 +29,7 @@
 char **strtow(char *str)
 {
 	char **result, *temp = str;
-	unsigned int size, words, i;
+	unsigned int size, words, i = 0;
 
 	if (str == NULL || strlen(str) == 0)
 		return (NULL);
@@ -38,7 +38,7 @@ char **strtow(char *str)
 	if (result == NULL)
 		return (NULL);
 
-	for (i = 0; i < words; i++)
+	for (; i < words; i++)
 	{
 		while (*temp == ' ')
 			temp++;
