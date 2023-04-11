@@ -5,10 +5,9 @@
  * @str: The string
  * Return: Number of words separated by spaces
  */
- int number_of_words(char *str)
- {
+int number_of_words(char *str)
+{
 	int words = 0;
-
 	while (*str)
 	{
 		while (*str == ' ')
@@ -18,8 +17,8 @@
 		while (*str != 0 && *str != ' ')
 			str++;
 	}
-	return words;
- }
+	return (words);
+}
 
 /**
  * strtow - Converts a string to words - delimiter is space
@@ -29,16 +28,18 @@
 char **strtow(char *str)
 {
 	char **result, *temp = str;
-	unsigned int size, words, i = 0;
+	unsigned int size, words, i;
 
 	if (str == NULL || strlen(str) == 0)
 		return (NULL);
 	words = number_of_words(str);
-	result = malloc(words * sizeof(char*) + 1);
+	if (words == 0)
+		return (NULL);
+	result = malloc(words * sizeof(char *) + 1);
 	if (result == NULL)
 		return (NULL);
 
-	for (; i < words; i++)
+	for (i = 0; i < words; i++)
 	{
 		while (*temp == ' ')
 			temp++;
