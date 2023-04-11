@@ -12,6 +12,9 @@ char *argstostr(int ac, char **av)
 	int i;
 	unsigned int *sizes, total;
 
+	if (ac == 0 || av == NULL)
+		return (NULL);
+
 	sizes = malloc(ac * sizeof(unsigned int));
 	if (sizes == NULL)
 		return (NULL);
@@ -46,5 +49,6 @@ char *argstostr(int ac, char **av)
 			result[total] = av[i][sizes[i]];
 		}
 	}
+	free(sizes);
 	return (result);
 }
