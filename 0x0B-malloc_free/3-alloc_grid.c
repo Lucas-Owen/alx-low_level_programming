@@ -1,14 +1,15 @@
 #include <stdlib.h>
 
 /**
- * alloc_grid - Returns a pointer to a 2D array of specified dimensions
+ * alloc_grid - Returns a pointer to a 2D array of ints of specified dimensions
+ * array is initialized with 0s
  * @width: Width of the 2D Array
  * @height: Height of the 2D Array
  * Return: Pointer to the 2D Array or NULL
  */
 int **alloc_grid(int width, int height)
 {
-	int **matrix, i;
+	int **matrix, i, j;
 
 	if (width <= 0 || height <= 0)
 		return (NULL);
@@ -17,6 +18,10 @@ int **alloc_grid(int width, int height)
 	if (matrix == NULL)
 		return (NULL);
 	for (i = 0; i < height; i++)
+	{
 		matrix[i] = malloc(width * sizeof(int));
+		for (j = 0; j < width; j++)
+			matrix[i][j] = 0;
+	}
 	return (matrix);
 }
