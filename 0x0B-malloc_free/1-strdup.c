@@ -3,21 +3,25 @@
 /**
  * _strdup - Copies a string and returns a pointer to the new string
  * @str: The string to be copied
- * Return: A pointer to a new string
+ * Return: A pointer to a new string or NULL
  */
 char *_strdup(char *str)
 {
 	char *result;
 	unsigned int size = 0;
-	int i;
 
 	if (str == NULL)
 		return (NULL);
 	while (str + size)
 		size++;
 	result = malloc(size * sizeof(char) + 1);
-	result[0] = str[0];
-	for (; size > 0; size--)
-		*(result + size) = *(str + size);
+	if (result == NULL)
+		return NULL;
+	result[size] = '\0';
+	while (size > 0)
+	{
+		size--;
+		result[size] = str[size];
+	}
 	return (result);
 }
