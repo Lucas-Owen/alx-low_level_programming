@@ -42,7 +42,7 @@ char *argstostr(int ac, char **av)
 		{
 			total--;
 			sizes[i]--;
-			result[total] = av[sizes[i]];
+			result[total] = av[i][sizes[i]];
 		}
 	}
 	return (result);
