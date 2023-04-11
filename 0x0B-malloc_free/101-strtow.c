@@ -8,6 +8,7 @@
 int number_of_words(char *str)
 {
 	int words = 0;
+
 	while (*str)
 	{
 		while (*str == ' ')
