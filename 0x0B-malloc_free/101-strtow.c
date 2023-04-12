@@ -36,7 +36,7 @@ char **strtow(char *str)
 	words = number_of_words(str);
 	if (words == 0)
 		return (NULL);
-	result = malloc(words * sizeof(char *) + 1);
+	result = malloc((words + 1) * sizeof(char *));
 	if (result == NULL)
 		return (NULL);
 
