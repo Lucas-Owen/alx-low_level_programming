@@ -6,6 +6,7 @@
  * n bytes of the second string
  * @s1: First string
  * @s2: Second string
+ * @n: Size to concatenate
  * Return: Pointer to the new string or NULL
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
@@ -28,7 +29,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 
 	min = (n < size2 ? n : size2);
 	size = size1 + min;
-	*res = malloc(sizeof(char) * size + 1);
+	res = malloc(sizeof(char) * size + 1);
 	res[size] = '\0';
 	if (!res)
 		return (NULL);
