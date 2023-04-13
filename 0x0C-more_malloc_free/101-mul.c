@@ -37,7 +37,8 @@ void shift(char *array, unsigned int size, unsigned int n)
  */
 void add(char *num1, char *num2, unsigned int size)
 {
-	int n1, n2, carry = 0;
+	int n1, n2, carry = 0, sum;
+
 	while(size > 0)
 	{
 		size--;
@@ -60,9 +61,9 @@ void add(char *num1, char *num2, unsigned int size)
 char *single_digit_multiply(char *num, unsigned int length, char digit, unsigned int size)
 {
 	char *result = calloc(size + 1, sizeof(char));
-	result[size] = '\0';
 	int carry = 0, a = digit - '0', b, c;
 
+	result[size] = '\0';
 	while (length > 0)
 	{
 		length--;
@@ -95,7 +96,6 @@ char *multiply(char *num1, char *num2)
 	unsigned int s_small = size1 < size2 ? size1 : size2;
 	unsigned int offset = 0;
 	unsigned int i = s_big;
-	int a, b;
 
 	result = calloc(size + 1, sizeof(char));
 	result[size] = '\0';
@@ -107,7 +107,7 @@ char *multiply(char *num1, char *num2)
 			s_small--;
 			temp = single_digit_multiply(bigger, s_big, smaller[s_small], size);
 			shift(result, size, offset);
-			add(result, temp);
+			add(result, temp, size);
 			free(temp);
 			offset++;
 		}
@@ -135,7 +135,6 @@ int main(int argc, char **argv)
 
 	for (i = 1; i < argc; i++)
 	{
-		length = strlen(argv[i]);
 		while (*argv[i] != '\0')
 		{
 			if (*argv[i] > '9' || *argv[i] < '0')
