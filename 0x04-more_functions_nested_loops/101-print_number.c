@@ -7,16 +7,20 @@
  */
 void print_number(int n)
 {
-	int factor = 0;
-	int temp, i;
+	int factor = 0, i;
+	unsigned int temp, m;
 
 	if (n < 0)
 	{
 		_putchar('-');
-		n = -n;
+		m = -n;
+	}
+	else
+	{
+		m = n;
 	}
 
-	temp = n;
+	temp = m;
 	do {
 		factor++;
 		temp /= 10;
@@ -30,7 +34,7 @@ void print_number(int n)
 		{
 			temp *= 10;
 		}
-		_putchar(n / temp + '0');
-		n %= temp;
+		_putchar(m / temp + '0');
+		m %= temp;
 	}
 }
