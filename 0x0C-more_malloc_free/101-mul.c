@@ -69,9 +69,14 @@ void add(char *num1, char *num2, unsigned int size)
  */
 char *s_dig_mul(char *num, unsigned int length, char digit, unsigned int size)
 {
-	char *result = malloc(sizeof(char) * (size + 1));
 	int carry = 0, a = digit - '0', b, c;
+	char *result = malloc(sizeof(char) * (size + 1));
 
+	if (result == NULL)
+	{
+		puts("Error");
+		exit(98);
+	}
 	initialize_with_zeros(result, size);
 	result[size] = '\0';
 	while (length > 0)
@@ -107,6 +112,11 @@ char *multiply(char *num1, char *num2)
 	unsigned int i = s_big;
 
 	result = malloc(sizeof(char) * (size + 1));
+	if (result == NULL)
+	{
+		puts("Error");
+		exit(98);
+	}
 	initialize_with_zeros(result, size);
 	result[size] = '\0';
 	while (i > 0)
