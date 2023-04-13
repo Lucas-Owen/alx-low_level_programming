@@ -27,6 +27,18 @@ void shift(char *array, unsigned int size, unsigned int n)
 	}
 }
 /**
+ * initialize_with_zeros - set every element of array to the character '0'
+ *
+ * @array: The array
+ * @size: Length of the array
+ * Return: void
+ */
+void initialize_with_zeros(char *array, unsigned int size)
+{
+	while(size > 0)
+		array[--size] = '0';
+}
+/**
  * add - Adds two numbers as char arrays, each one has to be large to accomodate the sum
  * The sum is placed in the first number
  *
@@ -60,9 +72,10 @@ void add(char *num1, char *num2, unsigned int size)
  */
 char *single_digit_multiply(char *num, unsigned int length, char digit, unsigned int size)
 {
-	char *result = calloc(size + 1, sizeof(char));
+	char *result = malloc(sizeof(char) * (size + 1));
 	int carry = 0, a = digit - '0', b, c;
 
+	initialize_with_zeros(result, size);
 	result[size] = '\0';
 	while (length > 0)
 	{
@@ -73,7 +86,7 @@ char *single_digit_multiply(char *num, unsigned int length, char digit, unsigned
 		size--;
 		result[size] = c % 10 + '0';
 	}
-	result[size - 1] = carry;
+	result[size - 1] = carry + '0';
 	return (result);
 }
 /**
@@ -97,7 +110,8 @@ char *multiply(char *num1, char *num2)
 	unsigned int offset = 0;
 	unsigned int i = s_big;
 
-	result = calloc(size + 1, sizeof(char));
+	result = malloc(sizeof(char) * (size + 1));
+	initialize_with_zeros(result, size);
 	result[size] = '\0';
 	while (i > 0)
 	{
@@ -106,12 +120,14 @@ char *multiply(char *num1, char *num2)
 		{
 			s_small--;
 			temp = single_digit_multiply(bigger, s_big, smaller[s_small], size);
-			shift(result, size, offset);
+			shift(temp, size, offset);
 			add(result, temp, size);
 			free(temp);
 			offset++;
 		}
 	}
+	if (result[0] == '0')
+		shift(result, size + 1, 1);
 	return (result);
 }
 
@@ -124,7 +140,7 @@ char *multiply(char *num1, char *num2)
  */
 int main(int argc, char **argv)
 {
-	char *result;
+	char *result, *temp;
 	int i;
 
 	if (argc != 3)
@@ -135,14 +151,15 @@ int main(int argc, char **argv)
 
 	for (i = 1; i < argc; i++)
 	{
-		while (*argv[i] != '\0')
+		temp = argv[i];
+		while (*temp != '\0')
 		{
-			if (*argv[i] > '9' || *argv[i] < '0')
+			if (*temp > '9' || *temp < '0')
 			{
 				puts("Error");
 				exit(98);
 			}
-			argv[i]++;
+			temp++;
 		}
 	}
 
