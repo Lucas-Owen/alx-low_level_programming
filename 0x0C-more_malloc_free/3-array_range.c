@@ -8,12 +8,14 @@
  */
 int *array_range(int min, int max)
 {
-	int *array, i;
+	int *array;
+	unsigned int i, size;
 
 	if (min > max)
 		return (NULL);
-	
-	array = malloc(sizeof(int) * (max - min + 1));
+
+	size = (unsigned int) (max - min + 1);
+	array = malloc(sizeof(int) * size);
 	if (!array)
 		return (NULL);
 
