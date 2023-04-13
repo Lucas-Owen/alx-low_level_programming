@@ -129,7 +129,7 @@ char *multiply(char *num1, char *num2)
 
 /**
  * main - Entry point for the program that multiplies two numbers
- * @argc: Length of argv array 
+ * @argc: Length of argv array
  * @argv: Array of arguments
  * Return: 0
  */
