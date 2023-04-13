@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <string.h>
 
 /**
  * _calloc - Allocates memory of nmemb elements of size bytes each
@@ -10,9 +9,8 @@
  */
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
-	void *res;
+	char *res;
 	unsigned int i;
-	char val = 0;
 
 	if (nmemb == 0 || size == 0)
 		return (NULL);
@@ -20,6 +18,6 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	if (!res)
 		return (NULL);
 	for (i = 0; i < size * nmemb; i++)
-		memcpy((char *) res + i, &val, 1);
-	return (res);
+		res[i] = 0;
+	return ((void *) res);
 }
