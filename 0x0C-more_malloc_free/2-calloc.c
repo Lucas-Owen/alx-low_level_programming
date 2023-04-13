@@ -5,6 +5,7 @@
  * and sets the memory to 0
  * @nmemb: Number of elements
  * @size: Size of each element
+ * Return: Pointer to the new block
  */
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
