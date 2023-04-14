@@ -112,10 +112,7 @@ char *multiply(char *num1, char *num2)
 
 	result = malloc(sizeof(char) * (size + 1));
 	if (result == NULL)
-	{
-		puts("Error");
-		exit(98);
-	}
+		return (NULL);
 	initialize_with_zeros(result, size);
 	result[size] = '\0';
 	while (i > 0)
@@ -127,9 +124,8 @@ char *multiply(char *num1, char *num2)
 			temp = s_dig_mul(bigger, s_big, smaller[s_small], size);
 			if (temp == NULL)
 			{
-				puts("Error");
 				free(result);
-				exit(98);
+				return (NULL);
 			}
 			shift(temp, size, offset);
 			add(result, temp, size);
