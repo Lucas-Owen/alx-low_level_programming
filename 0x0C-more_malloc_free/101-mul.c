@@ -74,8 +74,7 @@ char *s_dig_mul(char *num, unsigned int length, char digit, unsigned int size)
 
 	if (result == NULL)
 	{
-		puts("Error");
-		exit(98);
+		return (NULL);
 	}
 	initialize_with_zeros(result, size);
 	result[size] = '\0';
@@ -126,6 +125,12 @@ char *multiply(char *num1, char *num2)
 		{
 			s_small--;
 			temp = s_dig_mul(bigger, s_big, smaller[s_small], size);
+			if (temp == NULL)
+			{
+				puts("Error");
+				free(result);
+				exit(98);
+			}
 			shift(temp, size, offset);
 			add(result, temp, size);
 			free(temp);
