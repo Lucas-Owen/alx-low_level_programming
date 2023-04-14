@@ -30,9 +30,9 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	min = (n < size2 ? n : size2);
 	size = size1 + min;
 	res = malloc(sizeof(char) * size + 1);
-	res[size] = '\0';
 	if (!res)
 		return (NULL);
+	res[size] = '\0';
 	if (s1 != NULL)
 		strncpy(res, s1, size1);
 	if (s2 != NULL)
