@@ -3,7 +3,7 @@
 #include "dog.h"
 
 /**
- * Creates a new dog
+ * new_dog - Creates a new dog
  * @name: Name of the dog
  * @age: Age
  * @owner: The owner
@@ -11,7 +11,8 @@
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *d = malloc(sizeof dog);
+	dog_t *d = malloc(sizeof(dog);
+
 	if (!d)
 		return (NULL);
 	d->name = strdup(name);
