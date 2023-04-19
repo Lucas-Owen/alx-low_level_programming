@@ -4,13 +4,15 @@
  * @array: An array to be traversed
  * @size: Size of the array
  * @action: Function parameter to be executed
- * @Return: void
+ * Return: void
  */
 void array_iterator(int *array, size_t size, void (*action)(int))
 {
-	while (size > 0)
+	size_t i = 0;
+
+	while (i < size)
 	{
-		size--;
-		action(array[size]);
+		action(array[i]);
+		i++;
 	}
 }

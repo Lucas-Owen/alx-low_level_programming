@@ -6,13 +6,15 @@
  * @cmp: Compare function
  * Return: The index of integer if found, else (-1)
  */
-int int_index(int *array, int size, int (*cmp)(int));
+int int_index(int *array, int size, int (*cmp)(int))
 {
-	while (size > 0)
+	int i = 0;
+
+	while (i < size)
 	{
-		size--;
-		if (cmp(array[size]))
-			return size;
+		if (cmp(array[i]) != 0)
+			return (i);
+		i++;
 	}
-	return -1;
+	return (-1);
 }

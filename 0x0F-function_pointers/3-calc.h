@@ -7,7 +7,7 @@
  * @op: The operator
  * @f: The functionassociated
  */
-ypedeftruct op
+typedef struct op
 {
 	char *op;
 	int (*f)(int, int);
