@@ -1,7 +1,8 @@
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
-/** main - Prints the opcodes of main
+/**
+ * main - Prints the opcodes of main
  * @argc: Length of argv
  * @argv: Arguments array
  * Return: (0) on success, exits and sets status otherwise
@@ -25,9 +26,10 @@ int main(int argc, char **argv)
 
 	for (; bytes > 0; bytes--)
 	{
-		printf("%02x", (int)(*f));
+		printf("%02x", 0xff & (int)(*f));
 		if (bytes - 1)
-			prints(" ");
+			printf(" ");
+		f++;
 	}
 	printf("\n");
 }
