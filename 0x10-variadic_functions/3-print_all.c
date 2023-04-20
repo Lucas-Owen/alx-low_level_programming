@@ -11,7 +11,7 @@ int count_specifiers(const char * const types)
 {
 	int i = 0, n = 0;
 
-	while (types[i])
+	while (types && types[i])
 	{
 		switch (types[i])
 		{
@@ -76,11 +76,9 @@ void print_all(const char * const format, ...)
 	va_list args;
 	int n = 0, i = 0, printed;
 
-	if (format == NULL)
-		return;
 	va_start(args, format);
 	n = count_specifiers(format);
-	while (*(format + i))
+	while (format && *(format + i))
 	{
 		printed = print_args(&args, *(format + i));
 		if (printed)
