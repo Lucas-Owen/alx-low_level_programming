@@ -1,4 +1,4 @@
-#include "list.h"
+#include "lists.h"
 
 /**
  * list_len - Calculates the length of a linked list
@@ -8,7 +8,7 @@
 size_t list_len(const list_t *h)
 {
 	size_t size = 0;
-	list_t *temp = h;
+	list_t *temp = (list_t *) h;
 
 	while (temp != NULL)
 	{

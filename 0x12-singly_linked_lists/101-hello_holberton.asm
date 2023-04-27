@@ -3,7 +3,8 @@
 	section	.text
 main:
 	mov	rdi, message
+	mov	al,0
 	call	printf
 	ret
 message:
-	db	"Hello, Holberton\n\0"
+	db	"Hello, Holberton", 10, 0
