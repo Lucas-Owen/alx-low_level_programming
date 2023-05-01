@@ -24,7 +24,7 @@ int node_is_visited(listint_t *head, listint_t *node, listint_t *prev)
 /**
  * find_listint_loop - Finds the address where the loop begins
  * @head: The lsitint_t
- * Returns: The address where the loop begins or NULL
+ * Return: The address where the loop begins or NULL
  */
 listint_t *find_listint_loop(listint_t *head)
 {
@@ -38,6 +38,6 @@ listint_t *find_listint_loop(listint_t *head)
 		prev = temp;
 		temp = temp->next;
 	}
-	
+
 	return (NULL);
 }

@@ -24,7 +24,7 @@ int node_visited(listint_t *head, listint_t *node, listint_t *prev)
 /**
  * free_listint_safe_helper - Frees all malloced memory in the list_t
  * Can free lists with a loop
- * @head: The listint_t
+ * @h: The listint_t
  * @node: The current node
  * @prev: Previous node
  * Return: Number of nodes freed
@@ -48,7 +48,7 @@ size_t free_listint_safe_helper(listint_t *h, listint_t *node, listint_t *prev)
 /**
  * free_listint_safe - Frees all malloced memory in the list_t
  * Can free lists with a loop
- * @head: The listint_t
+ * @h: The listint_t
  * Return: Number of nodes freed
  */
 size_t free_listint_safe(listint_t **h)

@@ -27,7 +27,7 @@ int is_node_visited(listint_t *head, listint_t *node, listint_t *prev)
  * print_listint_safe - Prints all the elements of a list_t list
  * can print lists with a loop
  * Exits with status 98 if fails
- * @h: The list_t
+ * @head: The list_t
  * Return: The number of nodes
  */
 size_t print_listint_safe(const listint_t *head)
