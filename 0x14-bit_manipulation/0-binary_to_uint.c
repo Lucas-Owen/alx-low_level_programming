@@ -19,6 +19,6 @@ unsigned int binary_to_uint(const char *b)
 			return (num);
 	}
 	while (len > 0)
-		num &= (b[--len] - '0') << i++;
+		num |= (b[--len] - '0') << i++;
 	return (num);
 }

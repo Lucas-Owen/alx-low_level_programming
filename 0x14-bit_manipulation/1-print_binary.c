@@ -12,6 +12,6 @@ void print_binary(unsigned long int n)
 	while (!((n >> bits) & 1) && bits > 0)
 		bits--;
 	do {
-		((n >> bits)) ? _putchar('1') : _putchar('0');
+		((n >> bits) & 1) ? _putchar('1') : _putchar('0');
 	} while (bits-- > 0);
 }
