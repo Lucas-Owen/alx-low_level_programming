@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
- * reverse_listint_helper - Reverses a listing_t
+ * reverse_listint_helper - Reverses a listing_t, recursively
  * @head: Current head of the list
  * @newHead: Where the new head will be placed
  * Return: *head
@@ -25,17 +25,26 @@ listint_t *reverse_listint_helper(listint_t *head, listint_t **newHead)
 }
 
 /**
- * reverse_listint - Reverses a listint_t
+ * reverse_listint - Reverses a listint_t, iteratively
  * @head: Head of the linked list
  * Return: Address of the head
  */
 listint_t *reverse_listint(listint_t **head)
 {
-	listint_t *newHead;
+	listint_t *prev, *curr, *temp;
 
-	if (head == NULL)
+	if (head == NULL || *head == NULL)
 		return (NULL);
-	reverse_listint_helper(*head, &newHead);
-	*head = newHead;
-	return (newHead);
+	prev = *head;
+	*curr = prev->next;
+	*head->next = NULL;
+	while (curr != NULL)
+	{
+		temp = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = temp;
+	}
+	*head = prev;
+	return (*head);
 }
