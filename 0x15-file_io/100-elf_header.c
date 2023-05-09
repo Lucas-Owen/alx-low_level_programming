@@ -46,9 +46,23 @@ void print_magic_number(char *buffer)
  * @is_64_bit: 1 for 64 bit, 0 for 32 bit
  * Return: void
  */
-void print_class(int is_64_bit)
+void print_class(char *buffer)
 {
-	printf("  Class:%29cELF%d\n", ' ', is_64_bit ? 64 : 32);
+	printf("  Class:%29c", ' ');
+	switch (buffer[4])
+	{
+		case ELFCLASSNONE:
+			printf("invalid\n");
+			break;
+		case ELFCLASS32:
+			printf("ELF32\n");
+			break;
+		case ELFCLASS64:
+			printf("ELF64\n");
+			break;
+		default:
+			break;
+	}
 }
 
 /**
@@ -191,10 +205,7 @@ void print_type(char *buffer)
  */
 void print_entry_point_address(char *buffer)
 {
-	void *p = NULL;
-
-	memcpy(&p, buffer + 0x18, sizeof(void *));
-	printf("  Entry point address:%15c%p\n", ' ', p);
+	printf("  Entry point address:%15c%p\n", ' ', *(void **) (buffer + 0x18));
 }
 
 /**
@@ -245,7 +256,7 @@ int main(int argc, char **argv)
 	is_64_bit = (buffer[4] == 2 ? 1 : 0);
 	res = (is_64_bit ? read(fd, buffer, 64) : read(fd, buffer, 52));
 	print_magic_number(buffer);
-	print_class(is_64_bit);
+	print_class(buffer);
 	print_data(buffer);
 	print_version(buffer);
 	print_OS_ABI(buffer);
