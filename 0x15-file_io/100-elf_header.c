@@ -118,39 +118,40 @@ void print_version(char *buffer)
 void print_OS_ABI(char *buffer)
 {
 	printf("  OS/ABI:%28c", ' ');
-	switch ((int) buffer[7])
+	switch ((unsigned char) buffer[7])
 	{
 		case ELFOSABI_SYSV:
 			printf("UNIX - System V\n");
 			break;
 		case ELFOSABI_HPUX:
-			printf("HP-UX\n");
+			printf("UNIX - HP-UX\n");
 			break;
 		case ELFOSABI_NETBSD:
-			printf("NetBSD\n");
+			printf("UNIX - NetBSD\n");
 			break;
 		case ELFOSABI_LINUX:
-			printf("Linux\n");
+			printf("UNIX - Linux\n");
 			break;
 		case ELFOSABI_SOLARIS:
-			printf("Solaris\n");
+			printf("UNIX - Solaris\n");
 			break;
 		case ELFOSABI_IRIX:
-			printf("IRIX\n");
+			printf("UNIX - IRIX\n");
 			break;
 		case ELFOSABI_FREEBSD:
-			printf("FreeBSD\n");
+			printf("UNIX - FreeBSD\n");
 			break;
 		case ELFOSABI_TRU64:
-			printf("TRU64 UNIX\n");
+			printf("UNIX - TRU64 UNIX\n");
 			break;
 		case ELFOSABI_ARM:
-			printf("ARM architecture\n");
+			printf("UNIX - ARM architecture\n");
 			break;
 		case ELFOSABI_STANDALONE:
-			printf("Stand-alone (embedded)\n");
+			printf("UNIX - Stand-alone (embedded)\n");
 			break;
 		default:
+			printf("<unknown: %d>\n", buffer[7]);
 			break;
 	}
 }
