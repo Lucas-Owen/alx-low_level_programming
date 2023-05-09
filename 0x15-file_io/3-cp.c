@@ -25,7 +25,7 @@ void open_files(char **argv, int *file_to, int *file_from)
 				S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	if (*file_to < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", argv[2]);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 		fd = close(*file_from);
 		if (fd < 0)
 		{
@@ -49,7 +49,7 @@ int main(int argc, char **argv)
 
 	if (argc != 3)
 	{
-		dprintf(STDERR_FILENO, "Usage: %s file_from file_to\n", argv[0]);
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 
@@ -64,8 +64,8 @@ int main(int argc, char **argv)
 		result = write(file_to, buffer, result);
 		if (result < 0)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", argv[2]);
-			exit(100);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+			exit(99);
 		}
 		result = read(file_from, buffer, 1024);
 	} while (result != 0);
