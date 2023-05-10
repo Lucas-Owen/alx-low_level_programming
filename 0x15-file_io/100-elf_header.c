@@ -43,7 +43,7 @@ void print_magic_number(char *buffer)
 
 /**
  * print_class - Prints header class info of an elf file given class number
- * @is_64_bit: 1 for 64 bit, 0 for 32 bit
+ * @buffer: 2 for 64 bit, 1 for 32 bit
  * Return: void
  */
 void print_class(char *buffer)
@@ -175,7 +175,7 @@ void print_ABI_version(char *buffer)
 void print_type(char *buffer)
 {
 	printf("  Type:%30c", ' ');
-	switch (*(short int*) (buffer + 0x10))
+	switch (*(short int *) (buffer + 0x10))
 	{
 		case ET_NONE:
 			printf("NONE (Unknown)\n");
@@ -207,6 +207,22 @@ void print_type(char *buffer)
 void print_entry_point_address(char *buffer)
 {
 	printf("  Entry point address:%15c%p\n", ' ', *(void **) (buffer + 0x18));
+}
+
+/**
+ * print_everything - Calls all the print functions
+ * @buffer: The buffer
+ */
+void print_everything(char *buffer)
+{
+	print_magic_number(buffer);
+	print_class(buffer);
+	print_data(buffer);
+	print_version(buffer);
+	print_OS_ABI(buffer);
+	print_ABI_version(buffer);
+	print_type(buffer);
+	print_entry_point_address(buffer);
 }
 
 /**
@@ -256,15 +272,7 @@ int main(int argc, char **argv)
 	lseek(fd, 0, SEEK_SET);
 	is_64_bit = (buffer[4] == 2 ? 1 : 0);
 	res = (is_64_bit ? read(fd, buffer, 64) : read(fd, buffer, 52));
-	print_magic_number(buffer);
-	print_class(buffer);
-	print_data(buffer);
-	print_version(buffer);
-	print_OS_ABI(buffer);
-	print_ABI_version(buffer);
-	print_type(buffer);
-	print_entry_point_address(buffer);
-
+	print_everything(buffer);
 	res = close(fd);
 	if (res < 0)
 	{
