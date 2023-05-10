@@ -175,7 +175,7 @@ void print_ABI_version(char *buffer)
 void print_type(char *buffer)
 {
 	printf("  Type:%30c", ' ');
-	switch (buffer[0x10])
+	switch (*(short int*) (buffer + 0x10))
 	{
 		case ET_NONE:
 			printf("NONE (Unknown)\n");
@@ -264,5 +264,12 @@ int main(int argc, char **argv)
 	print_ABI_version(buffer);
 	print_type(buffer);
 	print_entry_point_address(buffer);
+
+	res = close(fd);
+	if (res < 0)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		exit(98);
+	}
 	return (0);
 }
