@@ -18,6 +18,8 @@ int node_visited(listint_t *head, listint_t *node, listint_t *prev)
 			return (1);
 		head = head->next;
 	}
+	if (head == node)
+		return (1);
 	return (0);
 }
 
