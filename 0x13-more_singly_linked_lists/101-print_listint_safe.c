@@ -14,12 +14,11 @@ int is_node_visited(listint_t *head, listint_t *node, listint_t *prev)
 {
 	if (prev == NULL || node == NULL)
 		return (0);
-	while (head != prev)
-	{
+	do {
 		if (head == node)
 			return (1);
 		head = head->next;
-	}
+	} while (head != prev);
 	return (0);
 }
 
