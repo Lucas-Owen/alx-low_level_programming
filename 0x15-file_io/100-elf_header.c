@@ -106,6 +106,7 @@ void print_version(char *buffer)
 			printf("(current)\n");
 			break;
 		default:
+			printf("\n");
 			break;
 	}
 }
@@ -164,7 +165,7 @@ void print_OS_ABI(char *buffer)
  */
 void print_ABI_version(char *buffer)
 {
-	printf("  ABI Version:%23c%hd\n", ' ', buffer[8]);
+	printf("  ABI Version:%23c%d\n", ' ', buffer[8]);
 }
 
 /**
@@ -206,7 +207,12 @@ void print_type(char *buffer)
  */
 void print_entry_point_address(char *buffer)
 {
-	printf("  Entry point address:%15c%p\n", ' ', *(void **) (buffer + 0x18));
+	size_t size = (buffer[4] == ELFCLASS64 ? 8 : 4);
+	void *p = NULL;
+
+	memcpy(&p + sizeof(void *) - size, buffer + 0x18, size);
+
+	printf("  Entry point address:%15c%p\n", ' ', p);
 }
 
 /**
