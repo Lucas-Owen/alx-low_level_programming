@@ -165,7 +165,7 @@ void print_OS_ABI(char *buffer)
  */
 void print_ABI_version(char *buffer)
 {
-	printf("  ABI Version:%23c%d\n", ' ', buffer[8]);
+	printf("  ABI Version:%23c%hd\n", ' ', buffer[8]);
 }
 
 /**
