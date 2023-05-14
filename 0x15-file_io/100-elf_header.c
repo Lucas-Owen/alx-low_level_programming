@@ -96,14 +96,14 @@ void print_data(char *buffer)
  */
 void print_version(char *buffer)
 {
-	printf("  Version:%27c%d ", ' ', buffer[6]);
+	printf("  Version:%27c%d", ' ', buffer[6]);
 	switch (buffer[6])
 	{
 		case EV_NONE:
-			printf("(invalid)\n");
+			printf(" (invalid)\n");
 			break;
 		case EV_CURRENT:
-			printf("(current)\n");
+			printf(" (current)\n");
 			break;
 		default:
 			printf("\n");
@@ -210,7 +210,7 @@ void print_entry_point_address(char *buffer)
 	size_t size = (buffer[4] == ELFCLASS64 ? 8 : 4);
 	void *p = NULL;
 
-	memcpy(&p + sizeof(void *) - size, buffer + 0x18, size);
+	memcpy(&p, (buffer + 0x18), size);
 
 	printf("  Entry point address:%15c%p\n", ' ', p);
 }
