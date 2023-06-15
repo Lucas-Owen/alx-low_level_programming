@@ -8,7 +8,7 @@
 size_t print_dlistint(const dlistint_t *h)
 {
 	size_t size = 0;
-	dlistint_t *temp = h;
+	dlistint_t *temp = (dlistint_t *) h;
 
 	while (temp)
 	{
@@ -16,6 +16,5 @@ size_t print_dlistint(const dlistint_t *h)
 		size++;
 		temp = temp->next;
 	}
-	printf("-> %lu elements\n", size);
 	return (size);
 }
