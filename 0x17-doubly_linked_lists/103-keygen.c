@@ -2,26 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-int f1(int num)
-{
-	num ^= 0x3b;
-	num &= 0x3f;
-	return (num);
-}
+#define f1(num) ((num ^ 0x3b) & 0x3f)
 
-int f2(char *user, size_t length)
-{
-	size_t i;
-	int result = 0;
-
-	for (i = 0; i < length; i++)
-	{
-		result += user[i];
-	}
-	result ^= 0x4f;
-	result &= 0x3f;
-	return (result);
-}
+/**
+ * f3 - does something
+ * @user: Arg
+ * @length: Arg
+ * Return: int
+ */
 int f3(char *user, size_t length)
 {
 	size_t i;
@@ -35,6 +23,14 @@ int f3(char *user, size_t length)
 	result &= 0x3f;
 	return (result);
 }
+
+
+/**
+ * f4 - does something
+ * @user: Arg
+ * @length: Arg
+ * Return: int
+ */
 int f4(char *user, size_t length)
 {
 	size_t i;
@@ -50,6 +46,14 @@ int f4(char *user, size_t length)
 	result = rand() & 0x3f;
 	return (result);
 }
+
+
+/**
+ * f5 - does something
+ * @user: Arg
+ * @length: Arg
+ * Return: int
+ */
 int f5(char *user, size_t length)
 {
 	size_t i;
@@ -63,6 +67,13 @@ int f5(char *user, size_t length)
 	result &= 0x3f;
 	return (result);
 }
+
+
+/**
+ * f6 - does something
+ * @num: Arg
+ * Return: int
+ */
 int f6(char num)
 {
 	int i;
@@ -77,6 +88,12 @@ int f6(char num)
 	return (result);
 }
 
+/**
+ * main - does something
+ * @argc: Arg
+ * @argv: Arg
+ * Return: int
+ */
 int main(int argc, char **argv)
 {
 	char password[6];
@@ -84,6 +101,7 @@ int main(int argc, char **argv)
 	"A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
 	size_t len;
 	int idx;
+	size_t i;
 
 	if (argc != 2)
 		return (1);
@@ -91,7 +109,10 @@ int main(int argc, char **argv)
 	memset(password, 0, sizeof(char) * 6);
 	idx = f1(len);
 	password[0] = key[idx];
-	idx = f2(argv[1], len);
+	idx = 0;
+	for (i = 0; i < len; i++)
+		idx += argv[1][i];
+	idx = (idx ^ 0x4f) & 0x3f;
 	password[1] = key[idx];
 	idx = f3(argv[1], len);
 	password[2] = key[idx];
