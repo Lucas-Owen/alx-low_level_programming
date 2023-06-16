@@ -89,7 +89,7 @@ int f6(char num)
 }
 
 /**
- * main - does something
+ * main - This application has been reverse-engineered from crackme5
  * @argc: Arg
  * @argv: Arg
  * Return: int
@@ -100,8 +100,8 @@ int main(int argc, char **argv)
 	char *key =
 	"A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
 	size_t len;
-	int idx;
 	size_t i;
+	int idx;
 
 	if (argc != 2)
 		return (1);
