@@ -29,16 +29,21 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	if (!ht)
 		return (0);
-	if (!key || strlen(key) == 0)
+	if (!key || !value || strlen(key) == 0)
 		return (0);
 	node = malloc(sizeof(hash_node_t));
 	if (!node)
 		return (0);
-	node->value = NULL;
-	/* TODO: Check if value is NULL */
 	node->value = strdup(value);
 	if (!node->value)
 	{
+		free(node);
+		return (0);
+	}
+	node->key = strdup(key);
+	if (!node->key)
+	{
+		free(node->value);
 		free(node);
 		return (0);
 	}
