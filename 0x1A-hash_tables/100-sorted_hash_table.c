@@ -38,17 +38,10 @@ shash_table_t *shash_table_create(unsigned long int size)
 */
 int insert_shash_node(shash_node_t **head, shash_node_t *node)
 {
-	shash_node_t *temp = NULL;
-
-	if (!head || !node)
+if (!head || !node)
 		return (0);
-	while (temp && strcmp(temp->key, node->key) > 0)
-	{
-		temp = temp->next;
-	}
-	node->next = temp;
-	if (*head == temp)
-		*head = node;
+	node->next = *head;
+	*head = node;
 	return (1);
 }
 
