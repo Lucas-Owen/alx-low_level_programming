@@ -47,12 +47,6 @@ int insert_shash_node(shash_node_t **head, shash_node_t *node)
 		temp = temp->next;
 	}
 	node->next = temp;
-	node->snext = temp;
-	if (temp)
-	{
-		node->sprev = temp->sprev;
-		temp->sprev = node;
-	}
 	if (*head == temp)
 		*head = node;
 	return (1);
@@ -82,91 +76,46 @@ int replace_key(shash_node_t *node, const char *key, const char *value)
 	return (0);
 }
 
-/**
- * fixup_head_tail - Ensures the shead and stail pointers are
- * correct after insert
- * @ht: The hash table
- * Return: void
- */
-void fixup_head_tail(shash_table_t *ht)
-{
-	unsigned int i;
-	shash_node_t *temp;
-
-	for (i = 0; i < ht->size; i++)
-	{
-		if (ht->array[i])
-		{
-			ht->shead = ht->array[i];
-			break;
-		}
-	}
-	for (i = ht->size - 1; i < ht->size; i--)
-	{
-		if (ht->array[i])
-		{
-			temp = ht->array[i];
-			while (temp->next)
-				temp = temp->next;
-			ht->stail = temp;
-			break;
-		}
-	}
-}
-
-/**
- * fixup_sprev_snext - Ensures the sprev and snext pointers are
- * correct after insert
- * @ht: The hash table
- * @node: Newly inserted node
- * @index: Index of the newly inserted node in the array
- * Return: void
- */
-void fixup_sprev_snext(shash_table_t *ht, shash_node_t *node, size_t index)
-{
-	unsigned int i;
-	shash_node_t *temp;
-
-	for (i = index - 1; i < index; i--)
-	{
-		if (ht->array[i])
-		{
-			temp = ht->array[i];
-			while (temp->next)
-				temp = temp->next;
-			temp->snext = ht->array[index];
-			ht->array[index]->sprev = temp;
-			break;
-		}
-	}
-	for (i = index + 1; i < ht->size; i++)
-	{
-		if (ht->array[i])
-		{
-			temp = node;
-			while (temp->next)
-			{
-				temp = temp->next;
-			}
-			ht->array[i]->sprev = temp;
-			temp->snext = ht->array[i];
-			break;
-		}
-	}
-}
 
 /**
  * fixup_table_pointers - Ensures the shead, stail, and snext pointers are
  * correct after insert
  * @ht: The hash table
  * @node: Newly inserted node
- * @index: Index of the newly inserted node in the array
  * Return: void
  */
-void fixup_table_pointers(shash_table_t *ht, shash_node_t *node, size_t index)
+void fixup_table_pointers(shash_table_t *ht, shash_node_t *node)
 {
-	fixup_head_tail(ht);
-	fixup_sprev_snext(ht, node, index);
+	shash_node_t *temp = ht->shead;
+
+	if (ht->shead == NULL)
+	{
+		ht->shead = node;
+		ht->stail = node;
+		return;
+	}
+	while (temp && strcmp(node->key, temp->key) > 0)
+	{
+		temp = temp->snext;
+	}
+	if (temp == NULL)
+	{
+		ht->stail->snext = node;
+		node->sprev = ht->stail;
+		ht->stail = node;
+		return;
+	}
+	if (temp == ht->shead)
+	{
+		node->snext = ht->shead;
+		ht->shead->sprev = node;
+		ht->shead = node;
+		return;
+	}
+	temp->sprev->snext = node;
+	node->sprev = temp->sprev;
+	node->snext = temp;
+	temp->sprev = node;
 }
 
 /**
@@ -213,7 +162,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		return (0);
 	}
 	insert_shash_node(&ht->array[index], node);
-	fixup_table_pointers(ht, node, index);
+	fixup_table_pointers(ht, node);
 	return (1);
 }
 
