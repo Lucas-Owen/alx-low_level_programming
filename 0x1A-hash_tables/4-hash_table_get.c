@@ -34,5 +34,5 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 		return (NULL);
 	if (!key || strlen(key) == 0)
 		return (NULL);
-	return find(ht->array[key_index(key, ht->size)], key);
+	return (find(ht->array[key_index((unsigned char *) key, ht->size)], key));
 }

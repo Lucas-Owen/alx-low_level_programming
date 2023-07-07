@@ -8,6 +8,7 @@
 void hash_table_print(const hash_table_t *ht)
 {
 	unsigned int i;
+	char first = 1;
 	hash_node_t *temp;
 
 	if (!ht)
@@ -16,10 +17,14 @@ void hash_table_print(const hash_table_t *ht)
 	for (i = 0; i < ht->size; i++)
 	{
 		temp = ht->array[i];
-		while (temp)
+		if (first && temp)
 		{
 			printf("'%s': '%s'", temp->key, temp->value);
 			temp = temp->next;
+			first = 0;
+		}
+		while (temp)
+		{
 			/* print the rest beginning with a comma*/
 			while (temp)
 			{

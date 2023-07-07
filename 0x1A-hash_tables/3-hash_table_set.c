@@ -18,6 +18,7 @@ int insert_at_head(hash_node_t **head, hash_node_t *node)
 
 /**
  * hash_table_set - Adds an element to the hash table
+ * In case of collision, adds the new node at the beginning of the list
  * @ht: Head of the hash_table
  * @key: The key
  * @value: The value
@@ -26,6 +27,7 @@ int insert_at_head(hash_node_t **head, hash_node_t *node)
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	hash_node_t *node;
+	unsigned int index;
 
 	if (!ht)
 		return (0);
@@ -47,6 +49,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		free(node);
 		return (0);
 	}
-	insert_at_head(&ht[key_index(key, ht->size)], node);
+	index = key_index((unsigned char *) key, ht->size);
+	insert_at_head(&ht->array[index], node);
 	return (1);
 }
