@@ -29,18 +29,21 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	hash_node_t *node;
 	unsigned int index;
 
-	if (!ht)
-		return (0);
-	if (!key || !value || strlen(key) == 0)
+	if (!ht || !key || strlen(key) == 0)
 		return (0);
 	node = malloc(sizeof(hash_node_t));
 	if (!node)
 		return (0);
-	node->value = strdup(value);
-	if (!node->value)
+	node->next = NULL;
+	node->value = NULL;
+	if (value)
 	{
-		free(node);
-		return (0);
+		node->value = strdup(value);
+		if (!node->value)
+		{
+			free(node);
+			return (0);
+		}
 	}
 	node->key = strdup(key);
 	if (!node->key)
