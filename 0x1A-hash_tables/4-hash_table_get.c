@@ -7,9 +7,9 @@
  * @key: Key of the list
  * Return: The value or NULL
 */
-char *find(hash_node *head, const char *key)
+char *find(hash_node_t *head, const char *key)
 {
-	hash_node *temp = head;
+	hash_node_t *temp = head;
 
 	while (temp)
 	{
@@ -34,5 +34,5 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 		return (NULL);
 	if (!key || strlen(key) == 0)
 		return (NULL);
-	return find(ht[key_index(key, ht->size)], key);
+	return find(ht->array[key_index(key, ht->size)], key);
 }
