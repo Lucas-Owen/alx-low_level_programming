@@ -10,7 +10,7 @@
 int insert_at_head(hash_node_t **head, hash_node_t *node)
 {
 	if (!head || !node)
-		return 0;
+		return (0);
 	node->next = *head;
 	*head = node;
 	return (1);
