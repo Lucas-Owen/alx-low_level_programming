@@ -8,10 +8,6 @@ RM = rm -f
 all: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-main.o: main.c m.h
-
-school.o: school.c m.h
-
 .PHONY: clean oclean fclean re
 clean:
 	$(RM) *~ $(NAME)
