@@ -1,9 +1,9 @@
-CC := gcc
-CFLAGS := -Wall -Werror -Wextra -pedantic
-SRC := main.c school.c
-OBJ := main.o school.o
-NAME := school
-RM := rm -f
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -pedantic
+SRC = main.c school.c
+OBJ = main.o school.o
+NAME = school
+RM = rm -f
 
 all: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
