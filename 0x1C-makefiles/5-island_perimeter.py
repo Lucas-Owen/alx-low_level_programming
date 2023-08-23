@@ -23,29 +23,25 @@ def island_perimeter(grid):
         raise TypeError("grid must be a list")
     if not grid:
         raise ValueError("grid cannot be empty")
-    if {type(cell) for cell in grid} != {list}:
+    if {type(cells) for cells in grid} != {list}:
         raise TypeError("grid must be a list of lists")
-    if {type(val) for cell in grid for val in cell} != {int}:
+    if {type(val) for cells in grid for val in cells} != {int}:
         raise ValueError("grid must be a list of lists of integers")
     perimeter = 0
-    for i, cell in enumerate(grid):
-        for j, val in enumerate(cell):
+    for i, row in enumerate(grid):
+        for j, cell in enumerate(row):
             # Add the neigboring cells that are 0
-            if val == 1:
+            if cell == 1:
                 # Left
-                if j - 1 >= 0:
-                    if grid[i][j-1] == 0:
-                        perimeter += 1
+                if j - 1 < 0 or grid[i][j-1] == 0:
+                    perimeter += 1
                 # Right
-                if j + 1 < len(cell):
-                    if grid[i][j+1] == 0:
-                        perimeter += 1
+                if j + 1 >= len(row) or grid[i][j+1] == 0:
+                    perimeter += 1
                 # Up
-                if i - 1 >= 0:
-                    if grid[i-1][j] == 0:
-                        perimeter += 1
+                if i - 1 < 0 or grid[i-1][j] == 0:
+                    perimeter += 1
                 # Down
-                if i + 1 < len(grid):
-                    if grid[i+1][j] == 0:
-                        perimeter += 1
+                if i + 1 >= len(grid) or grid[i+1][j] == 0:
+                    perimeter += 1
     return perimeter
