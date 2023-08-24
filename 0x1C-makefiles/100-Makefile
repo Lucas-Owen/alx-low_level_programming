@@ -6,7 +6,12 @@ NAME = school
 
 all: $(NAME)
 
+ifeq ($(wildcard m.h), m.h)
 $(NAME): $(OBJ)
+else
+$(NAME):
+	@exit 1
+endif
 
 .PHONY: clean oclean fclean re
 clean:
