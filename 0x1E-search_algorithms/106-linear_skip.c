@@ -1,37 +1,34 @@
-#include <math.h>
 #include "search_algos.h"
 
 /**
- * jump_list - searches for a value in a sorted linked list of integers using
- * the Jump search algorithm
+ * linear_skip - searches for a value in a sorted skip list of integers using
+ * the linear search algorithm
  * @list: is a pointer to the head of the linked list
- * @size: is the number of elements in list
  * @value: is the value to search for
  * Return: pointer to the first node where value is located or NULL
  */
-listint_t *jump_list(listint_t *list, size_t size, int value)
+skiplist_t *linear_skip(skiplist_t *list, int value)
 {
-	size_t i, step = sqrt(size), k;
-	listint_t *prev = NULL, *curr = list;
+	skiplist_t *curr, *prev;
 
-	if (!list || !size)
+	if (!list)
 		return (NULL);
-	for (i = 0; i < size && curr->n < value && curr->next; i += step)
+	prev = list;
+	curr = list->express;
+	for (; curr && curr->n < value; curr = curr->express)
 	{
 		prev = curr;
-		for (k = 0; k < step && curr->next; k++)
-			curr = curr->next;
 		printf("Value checked at index [%ld] = [%d]\n", curr->index, curr->n);
-
+		if (!curr->express)
+			break;
 	}
 	printf(
 		"Value found between indexes [%ld] = [%ld]\n", prev->index, curr->index);
-	for (; prev != curr->next; prev = prev->next)
+	for (; prev; prev = prev->next)
 	{
 		printf("Value checked at index [%ld] = [%d]\n", prev->index, prev->n);
 		if (prev->n == value)
 			return (prev);
 	}
-
 	return (NULL);
 }
