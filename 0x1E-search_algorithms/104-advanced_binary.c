@@ -13,7 +13,7 @@ int binary_search_recursive(int *array, int value, long lo, long hi)
 {
 	long m = (lo + hi) / 2, i;
 
-	if (lo < 0 || hi < lo)
+	if (hi < lo)
 		return (-1);
 	printf("Searching in array:");
 	printf(" %d", array[lo]);
