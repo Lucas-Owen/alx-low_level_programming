@@ -16,8 +16,9 @@ int binary_search_recursive(int *array, int value, long lo, long hi)
 	if (lo < 0 || hi < lo)
 		return (-1);
 	printf("Searching in array:");
-	for (i = lo; i <= hi; i++)
-		printf(" %d", array[i]);
+	printf(" %d", array[lo]);
+	for (i = lo + 1; i <= hi; i++)
+		printf(", %d", array[i]);
 	printf("\n");
 	if (array[m] == value)
 	{
