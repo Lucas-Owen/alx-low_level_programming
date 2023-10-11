@@ -22,9 +22,8 @@ int binary_search_recursive(int *array, int value, long lo, long hi)
 	printf("\n");
 	if (array[m] == value)
 	{
-		i = binary_search_recursive(array, value, m - 1, m - 1);
-		if (i >= 0)
-			return (i);
+		if (m - 1 >= 0 && array[m - 1] == value)
+			return (binary_search_recursive(array, value, lo, m));
 		return (m);
 	}
 	if (array[m] < value)
