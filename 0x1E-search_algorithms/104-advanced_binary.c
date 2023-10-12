@@ -28,7 +28,7 @@ int binary_search_recursive(int *array, int value, long lo, long hi)
 	}
 	if (array[m] < value)
 		return (binary_search_recursive(array, value, m + 1, hi));
-	return (binary_search_recursive(array, value, lo, m - 1));
+	return (binary_search_recursive(array, value, lo, m));
 }
 
 /**
